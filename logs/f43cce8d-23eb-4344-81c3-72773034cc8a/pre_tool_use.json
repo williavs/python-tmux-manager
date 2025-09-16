@@ -1,0 +1,100 @@
+[
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+      "file_path": "/home/wv3/claude-code-work/python-tmux-manager/tmux-manager.py",
+      "limit": 50
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+      "file_path": "/home/wv3/claude-code-work/python-tmux-manager/README.md"
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Write",
+    "tool_input": {
+      "file_path": "/home/wv3/claude-code-work/python-tmux-manager/README.md",
+      "content": "# Python Tmux Manager \ud83d\udc0d\n\n**Interactive command-line tmux session manager with safety features**\n\nA Python-based tmux session management tool that provides safe, interactive control over tmux sessions. This is the script behind the `t` command alias - designed for quick session switching and workspace management.\n\n## \ud83d\ude80 Features\n\n- **Interactive Session Browser** - Navigate through existing tmux sessions safely\n- **Session Details** - View session info, window counts, and attachment status\n- **Safe Operations** - Prevents accidental session destruction \n- **Color-coded Output** - Clear visual feedback with ANSI colors\n- **Current Session Awareness** - Always knows which session you're in\n- **Directory Integration** - Project directory awareness with fzf integration\n\n## \ud83d\udccb Requirements\n\n- **Python 3.6+** - Modern Python with type hints\n- **tmux** - Terminal multiplexer (tested with 3.0+)  \n- **fzf** - Fuzzy finder (for directory selection)\n\n## \ud83d\udd27 Installation\n\n### Quick Setup (Alias Method)\nAdd this line to your `~/.bashrc`:\n```bash\nalias t='python3 /path/to/tmux-manager.py'\n```\n\n### Standalone Usage\n```bash\n# Run directly\npython3 tmux-manager.py\n\n# Make executable and run\nchmod +x tmux-manager.py\n./tmux-manager.py\n```\n\n## \ud83c\udfae Usage\n\nSimply run the `t` command:\n```bash\nt\n```\n\n### Interactive Interface\n- **View Sessions** - See all active tmux sessions with details\n- **Switch Sessions** - Safely switch between sessions\n- **Session Status** - Shows attached/detached status\n- **Window Counts** - See how many windows each session has\n- **Creation Times** - View when sessions were created\n\n### Safety Features\n- **Non-destructive** - Focuses on session switching rather than destruction\n- **Current Session Awareness** - Never loses track of your current context\n- **Error Handling** - Graceful handling of tmux command failures\n\n## \ud83c\udfd7\ufe0f Architecture\n\n```\npython-tmux-manager/\n\u251c\u2500\u2500 tmux-manager.py     # Main interactive session manager\n\u251c\u2500\u2500 tmux_utils.py       # Utility functions for directory/project handling\n\u2514\u2500\u2500 README.md           # This documentation\n```\n\n### Core Components\n\n#### `TmuxManager` Class\n- **Session Management** - List, switch, and monitor tmux sessions\n- **Interactive Interface** - Menu-driven session selection\n- **Safety Checks** - Prevents dangerous operations\n- **Color Output** - Visual feedback with ANSI color codes\n\n#### `tmux_utils.py` Module\n- **Directory Listing** - Project directory discovery\n- **FZF Integration** - Fuzzy finder for directory selection\n- **Utility Functions** - Helper functions for tmux operations\n\n## \ud83c\udfa8 Interface\n\nThe tool provides a clean, color-coded interface:\n\n```\nCurrent Session: my-project (3 windows, attached)\n\nAvailable Sessions:\n  [1] work-session     (5 windows, detached)\n  [2] personal-project (2 windows, detached) \n  [3] testing-env      (1 window, detached)\n\nSelect session [1-3] or 'q' to quit:\n```\n\n## \ud83d\udd17 Integration\n\nThis Python tmux manager works alongside other tmux tools:\n\n- **`t`** - This Python manager (quick session switching)\n- **`wiz`** - Bash-based tmux wizard (complex session creation)\n- **`tuiwiz`** - TUI-based tmux wizard (keyboard-driven interface)\n\nEach tool serves different use cases in a complete tmux workflow.\n\n## \ud83d\udcca Session Information\n\nFor each session, the manager displays:\n- **Session Name** - Human-readable identifier\n- **Window Count** - Number of windows in the session\n- **Attachment Status** - Whether someone is currently attached\n- **Creation Time** - When the session was originally created\n- **Current Indicator** - Highlights your active session\n\n## \ud83d\udc1b Troubleshooting\n\n### Common Issues\n\n**\"tmux error\" messages:**\n```bash\n# Check if tmux is running\ntmux list-sessions\n\n# Verify tmux installation\nwhich tmux\n```\n\n**Directory picker not working:**\n```bash\n# Ensure fzf is installed\nwhich fzf\n\n# Install fzf if missing\nsudo apt install fzf  # Ubuntu/Debian\nbrew install fzf      # macOS\n```\n\n### Debug Mode\nRun with Python's verbose flag to see detailed output:\n```bash\npython3 -v tmux-manager.py\n```\n\n## \ud83d\udcc4 License\n\nMIT License - Part of the WillyV3 tmux workflow suite.\n\n## \ud83e\udd1d Related Projects\n\n- **tmux-wizard-tui** - TUI interface for tmux session creation\n- **tmux-scripts** - Collection of tmux automation tools\n\n---\n\n**Quick Start**: Add `alias t='python3 /path/to/tmux-manager.py'` to your shell config and enjoy safe, interactive tmux session management! \ud83d\ude80"
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "git init",
+      "description": "Initialize git repository"
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "git branch -M main",
+      "description": "Rename default branch to main"
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "TodoWrite",
+    "tool_input": {
+      "todos": [
+        {
+          "content": "Complete git repository setup for python-tmux-manager",
+          "status": "in_progress",
+          "activeForm": "Completing git repository setup for python-tmux-manager"
+        },
+        {
+          "content": "Create GitHub repository using gh CLI",
+          "status": "pending",
+          "activeForm": "Creating GitHub repository using gh CLI"
+        },
+        {
+          "content": "Push Python tmux manager code to GitHub",
+          "status": "pending",
+          "activeForm": "Pushing Python tmux manager code to GitHub"
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "f43cce8d-23eb-4344-81c3-72773034cc8a",
+    "transcript_path": "/home/wv3/.claude/projects/-home-wv3/f43cce8d-23eb-4344-81c3-72773034cc8a.jsonl",
+    "cwd": "/home/wv3/claude-code-work/python-tmux-manager",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "git add .",
+      "description": "Add all files to git staging area"
+    }
+  }
+]
