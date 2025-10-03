@@ -3,16 +3,39 @@ import shutil
 import subprocess
 from typing import List, Optional
 
-PROJECT_ROOTS = [
-    '/home/wv3/projects',
-    '/home/wv3/v3consult',
-    '/home/wv3/workspace',
-    '/home/wv3/claude-code-work',
-]
+def get_project_roots() -> List[str]:
+    """Get project root directories, checking XDG_CONFIG_HOME or ~/.config first"""
+    config_file = os.path.expanduser('~/.config/tmux-manager/projects.conf')
+
+    # If config exists, read from it
+    if os.path.exists(config_file):
+        roots = []
+        with open(config_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    expanded = os.path.expanduser(line)
+                    if os.path.isdir(expanded):
+                        roots.append(expanded)
+        if roots:
+            return roots
+
+    # Default fallback: common project locations
+    home = os.path.expanduser('~')
+    default_roots = [
+        os.path.join(home, 'projects'),
+        os.path.join(home, 'workspace'),
+        os.path.join(home, 'dev'),
+        os.path.join(home, 'code'),
+        os.path.join(home, 'Development'),
+    ]
+
+    # Only return directories that exist
+    return [r for r in default_roots if os.path.isdir(r)]
 
 def list_project_dirs() -> List[str]:
     dirs: List[str] = []
-    for r in PROJECT_ROOTS:
+    for r in get_project_roots():
         if os.path.isdir(r):
             for d in os.listdir(r):
                 p = os.path.join(r, d)
